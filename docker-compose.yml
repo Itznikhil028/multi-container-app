@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  flaskapp:
+    build: .
+    container_name: flaskapp
+
+  nginx:
+    image: nginx:latest
+    container_name: nginxserver
+    ports:
+      - "8080:80"
+
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+
+    depends_on:
+      - flaskapp
